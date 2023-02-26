@@ -174,6 +174,7 @@ export default function CerminCembung() {
   return (
     <div>
       <Canvas initialDraw={initialDraw} width={width} height={height} />
+			<h1>dwad</h1>
     </div>
   );
 }
