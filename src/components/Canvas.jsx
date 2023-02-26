@@ -11,5 +11,5 @@ export default function Canvas({ initialDraw, width, height }) {
     initialDraw(canvas, context);
   }, [initialDraw]);
 
-  return <canvas ref={canvasRef} width={width*4/5} height={height*4/5} />;
+  return <canvas ref={canvasRef} width={width} height={height} />;
 }

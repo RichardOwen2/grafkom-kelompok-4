@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
 export default function useConfig({ rumusJarakBayangan, rumusUkuranBayangan }) {
-  const [ukuranBenda, setUkuranBenda] = useState(12);
-  const [jarakBenda, setJarakBenda] = useState(12);
-  const [titikFokus, setTitikFokus] = useState(12);
-  const [jarakBayangan, setJarakBayangan] = useState(12);
-  const [ukuranBayangan, setukuranBayangan] = useState(12);
+  const [ukuranBenda, setUkuranBenda] = useState(50);
+  const [jarakBenda, setJarakBenda] = useState(200);
+  const [titikFokus, setTitikFokus] = useState(100);
+  const [jarakBayangan, setJarakBayangan] = useState(null);
+  const [ukuranBayangan, setukuranBayangan] = useState(null);
 
   useEffect(() => {
     const jarakBayanganBaru = rumusJarakBayangan(titikFokus, jarakBenda);
