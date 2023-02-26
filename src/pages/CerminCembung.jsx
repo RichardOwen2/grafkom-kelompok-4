@@ -23,6 +23,8 @@ export default function CerminCembung() {
 		value: [ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan],
 	} = useConfig({ rumusJarakBayangan, rumusUkuranBayangan });
 
+	console.log([ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan])
+
 	const initialDraw = (canvas, ctx) => {
 		const cwidth = canvas.width
 		const cheight = canvas.height
