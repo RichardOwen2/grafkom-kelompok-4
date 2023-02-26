@@ -7,50 +7,168 @@ export default function CerminCembung() {
   const { width, height } = useContext(PageSizeContext);
 
   const initialDraw = (canvas, ctx) => {
-    var centerX = canvas.width / 2;
-		var centerY = canvas.height / 2;
-		var radius = 100;
-		var thickness = 20;
+	if (canvas.getContext){
+		const cwidth = canvas.width
+		const cheight = canvas.height
+		ctx.translate(cwidth - cwidth/2, cheight - cheight/2);
+		ctx.scale(1, -1);
+		// grid();
+		ctx.strokeStyle="black";
+		
+		var rect = 5;
+		
+		var lens_height = 100;
+		var lens_x = 0;
+		var y = 0;
+		
+		
+		//========================
+		//   CIRCLE 1
+		//========================
+		//VARIABLES
+		var x1 = 0;
+		var r1 = 100;
+		var ang1 = 90 * (Math.PI/180);
+		var x_ang1 = (Math.cos(ang1/2) * r1) + x1;
+		var y_ang1 = (Math.sin(ang1/2) * r1) + y;
+		
+		
+		//ADJUSTMENTS
+		if(Math.round(y_ang1 * 10)/10 > lens_height)
+		{
+		  while(Math.round(y_ang1 * 10)/10 > lens_height)
+		  {
+			r1 = r1 - 1;
+			y_ang1 = (Math.sin(ang1/2) * r1);
+		  }
+		}
+		if(Math.round(y_ang1 * 10)/10 < lens_height)
+		{
+		  while(Math.round(y_ang1 * 10)/10 < lens_height)
+		  {
+			r1 = r1 + 1;
+			y_ang1 = (Math.sin(ang1/2) * r1);
+		  }
+		}
+		y_ang1 = y_ang1 + y;
+		x_ang1 = (Math.cos(ang1/2) * r1) + x1;
+		
+		if(Math.round(x_ang1 * 10)/10 > lens_x)
+		{
+		  while(Math.round(x_ang1 * 10)/10 > lens_x)
+		  {
+			x1 = x1 - 1;
+			x_ang1 = (Math.cos(ang1/2) * r1) + x1;
+		  }
+		}
+		if(Math.round(x_ang1 * 10)/10 < lens_x)
+		{
+		  while(Math.round(x_ang1 * 10)/10 < lens_x)
+		  {
+			x1 = x1 + 1;
+			x_ang1 = (Math.cos(ang1/2) * r1) + x1;
+		  }
+		}
+		
+		//========================
+		//   CIRCLE 1
+		//========================
+		//VARIABLES
+		var x2 = 0;
+		var r2 = 100;
+		var ang2 = 90 * (Math.PI/180);
+		var x_ang2 = -((Math.cos(ang2/2) * r2) + x2);
+		var y_ang2 = (Math.sin(ang2/2) * r2) + y;
+		
+		
+		//ADJUSTMENTS
+		if(Math.round(y_ang2 * 10)/10 > lens_height)
+		{
+		  while(Math.round(y_ang2 * 10)/10 > lens_height)
+		  {
+			r2 = r2 - 1;
+			y_ang2 = (Math.sin(ang2/2) * r2);
+		  }
+		}
+		if(Math.round(y_ang2 * 10)/10 < lens_height)
+		{
+		  while(Math.round(y_ang2 * 10)/10 < lens_height)
+		  {
+			r2 = r2 + 1;
+			y_ang2 = (Math.sin(ang2/2) * r2);
+		  }
+		}
+		y_ang2 = y_ang2 + y;
+		x_ang2 = -((Math.cos(ang2/2) * r2)) + x2;
+		
+		if(Math.round(x_ang2 * 10)/10 > lens_x)
+		{
+		  while(Math.round(x_ang2 * 10)/10 > lens_x)
+		  {
+			x2 = x2 - 1;
+			x_ang2 = -((Math.cos(ang2/2) * r2)) + x2;
+		  }
+		}
+		if(Math.round(x_ang2 * 10)/10 < lens_x)
+		{
+		  while(Math.round(x_ang2 * 10)/10 < lens_x)
+		  {
+			x2 = x2 + 1;
+			x_ang2 = -((Math.cos(ang2/2) * r2)) + x2;
+		  }
+		}
+		
+		ctx.strokeStyle="blue";
+		ctx.fillStyle="blue";
 		ctx.beginPath();
-		ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-		ctx.lineWidth = thickness;
-		ctx.strokeStyle = '#000';
+		ctx.arc(x1, y, r1, Math.PI * 2, 0);
 		ctx.stroke();
-
-		// Menggambar garis sumbu optik
 		ctx.beginPath();
-		ctx.moveTo(centerX - thickness / 2, centerY);
-		ctx.lineTo(centerX + thickness / 2, centerY);
-		ctx.lineWidth = 1;
-		ctx.strokeStyle = '#000';
+		ctx.rect(x1 - rect/2, y - rect/2, rect, rect);
+		ctx.fill();
+		
+		
+		ctx.strokeStyle="red";
+		ctx.fillStyle="red";
+		ctx.beginPath();
+		ctx.arc(x2, y, r2, Math.PI * 2, 0);
 		ctx.stroke();
-
-		// Menggambar titik fokus
-		var focalLength = 50;
-		var focalPointX = centerX + focalLength;
 		ctx.beginPath();
-		ctx.arc(focalPointX, centerY, 5, 0, 2 * Math.PI, false);
-		ctx.fillStyle = '#000';
+		ctx.rect(x2 - rect/2, y - rect/2, rect, rect);
 		ctx.fill();
-
-		// Menggambar bayangan
-		var objectDistance = 150;
-		var objectHeight = 50;
-		var imageDistance = 1 / ((1 / focalLength) - (1 / objectDistance));
-		var imageHeight = (objectHeight / objectDistance) * imageDistance;
-		var imagePointX = centerX - imageDistance;
+		
 		ctx.beginPath();
-		ctx.arc(imagePointX, centerY, 5, 0, 2 * Math.PI, false);
-		ctx.fillStyle = '#f00';
+		ctx.arc(x1, y, r1, -ang1/2, ang1/2);
+		ctx.arc(x2, y, r2, Math.PI-ang2/2, Math.PI + ang2/2);
+		ctx.strokeStyle="rgba(0,150,255, 1)";
+		ctx.fillStyle="rgba(0,150,255, 0.3)";
 		ctx.fill();
+		ctx.stroke();
+		
+		
+		
+		
+		
+		
+		
+		
+		ctx.strokeStyle="black";
+		ctx.fillStyle="black";
+		//==========================
+		//      ARROW
+		//==========================
+		var arrow_height = 50;
+		var arrow_dist = 200;
+		
 		ctx.beginPath();
-		ctx.moveTo(centerX - objectDistance, centerY - objectHeight / 2);
-		ctx.lineTo(imagePointX, centerY - imageHeight / 2);
-		ctx.lineTo(imagePointX, centerY + imageHeight / 2);
-		ctx.lineTo(centerX - objectDistance, centerY + objectHeight / 2);
-		ctx.closePath();
-		ctx.fillStyle = 'rgba(255, 0, 0, 0.3)';
-		ctx.fill();
+		ctx.moveTo(-arrow_dist, 0);
+		ctx.lineTo(-arrow_dist, arrow_height);
+		ctx.lineTo(-arrow_dist - 3, arrow_height - 5);
+		ctx.moveTo(-arrow_dist, arrow_height);
+		ctx.lineTo(-arrow_dist + 3, arrow_height - 5);
+		ctx.stroke();
+	}
+    
   }
 
   return (
