@@ -71,7 +71,7 @@ export default function CerminCembung() {
 		}
 		
 		//========================
-		//   CIRCLE 1
+		//   CIRCLE 2
 		//========================
 		//VARIABLES
 		var x2 = 0;
@@ -117,26 +117,20 @@ export default function CerminCembung() {
 			x_ang2 = -((Math.cos(ang2/2) * r2)) + x2;
 		  }
 		}
-		
+
+		// buat titik fokus
 		ctx.strokeStyle="blue";
 		ctx.fillStyle="blue";
-		ctx.beginPath();
-		ctx.arc(x1, y, r1, 0, 0);
-		ctx.stroke();
 		ctx.beginPath();
 		ctx.rect(x1 - rect/2, y - rect/2, rect, rect);
 		ctx.fill();
 		
-		
-		ctx.strokeStyle="red";
-		ctx.fillStyle="red";
-		ctx.beginPath();
-		ctx.arc(x2, y, r2, 0, 0);
-		ctx.stroke();
-		ctx.beginPath();
-		ctx.rect(x2 - rect/2, y - rect/2, rect, rect);
-		ctx.fill();
-		
+		// ctx.strokeStyle="red";
+		// ctx.fillStyle="red";
+		// ctx.beginPath();
+		// ctx.rect(x2 - rect/2, y - rect/2, rect, rect);
+		// ctx.fill();
+
 		ctx.beginPath();
 		ctx.arc(x1, y, r1, -ang1/2, ang1/2);
 		ctx.arc(x2, y, r2, Math.PI-ang2/2, Math.PI + ang2/2);
@@ -145,7 +139,16 @@ export default function CerminCembung() {
 		ctx.fill();
 		ctx.stroke();
 		
+		// gambar garis x
+		ctx.strokeStyle="black";
+		ctx.fillStyle="black";
+		var start = cwidth/3;
+		var end = 0;
 		
+		ctx.beginPath();
+		ctx.moveTo(-cwidth/3, 0);
+		ctx.lineTo(start, end);
+		ctx.stroke();
 		
 		
 		
