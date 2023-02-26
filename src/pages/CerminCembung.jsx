@@ -26,97 +26,15 @@ export default function CerminCembung() {
 		//   CIRCLE 1
 		//========================
 		//VARIABLES
-		var x1 = 0;
+		var x1 = -100;
 		var r1 = 100;
-		var ang1 = 90 * (Math.PI/180);
-		var x_ang1 = (Math.cos(ang1/2) * r1) + x1;
-		var y_ang1 = (Math.sin(ang1/2) * r1) + y;
-		
-		
-		//ADJUSTMENTS
-		if(Math.round(y_ang1 * 10)/10 > lens_height)
-		{
-		  while(Math.round(y_ang1 * 10)/10 > lens_height)
-		  {
-			r1 = r1 - 1;
-			y_ang1 = (Math.sin(ang1/2) * r1);
-		  }
-		}
-		if(Math.round(y_ang1 * 10)/10 < lens_height)
-		{
-		  while(Math.round(y_ang1 * 10)/10 < lens_height)
-		  {
-			r1 = r1 + 1;
-			y_ang1 = (Math.sin(ang1/2) * r1);
-		  }
-		}
-		y_ang1 = y_ang1 + y;
-		x_ang1 = (Math.cos(ang1/2) * r1) + x1;
-		
-		if(Math.round(x_ang1 * 10)/10 > lens_x)
-		{
-		  while(Math.round(x_ang1 * 10)/10 > lens_x)
-		  {
-			x1 = x1 - 1;
-			x_ang1 = (Math.cos(ang1/2) * r1) + x1;
-		  }
-		}
-		if(Math.round(x_ang1 * 10)/10 < lens_x)
-		{
-		  while(Math.round(x_ang1 * 10)/10 < lens_x)
-		  {
-			x1 = x1 + 1;
-			x_ang1 = (Math.cos(ang1/2) * r1) + x1;
-		  }
-		}
 		
 		//========================
 		//   CIRCLE 2
 		//========================
 		//VARIABLES
-		var x2 = 0;
+		var x2 = -x1;
 		var r2 = 100;
-		var ang2 = 90 * (Math.PI/180);
-		var x_ang2 = -((Math.cos(ang2/2) * r2) + x2);
-		var y_ang2 = (Math.sin(ang2/2) * r2) + y;
-		
-		
-		//ADJUSTMENTS
-		if(Math.round(y_ang2 * 10)/10 > lens_height)
-		{
-		  while(Math.round(y_ang2 * 10)/10 > lens_height)
-		  {
-			r2 = r2 - 1;
-			y_ang2 = (Math.sin(ang2/2) * r2);
-		  }
-		}
-		if(Math.round(y_ang2 * 10)/10 < lens_height)
-		{
-		  while(Math.round(y_ang2 * 10)/10 < lens_height)
-		  {
-			r2 = r2 + 1;
-			y_ang2 = (Math.sin(ang2/2) * r2);
-		  }
-		}
-		y_ang2 = y_ang2 + y;
-		x_ang2 = -((Math.cos(ang2/2) * r2)) + x2;
-		
-		if(Math.round(x_ang2 * 10)/10 > lens_x)
-		{
-		  while(Math.round(x_ang2 * 10)/10 > lens_x)
-		  {
-			x2 = x2 - 1;
-			x_ang2 = -((Math.cos(ang2/2) * r2)) + x2;
-		  }
-		}
-		if(Math.round(x_ang2 * 10)/10 < lens_x)
-		{
-		  while(Math.round(x_ang2 * 10)/10 < lens_x)
-		  {
-			x2 = x2 + 1;
-			x_ang2 = -((Math.cos(ang2/2) * r2)) + x2;
-		  }
-		}
 
 		// buat titik fokus
 		ctx.strokeStyle="blue";
@@ -145,16 +63,19 @@ export default function CerminCembung() {
 		ctx.fill();
 
 
-
-
-
+		var radius = 4000;
 		ctx.beginPath();
-		ctx.arc(x1, y, r1, -ang1/2, ang1/2);
-		ctx.arc(x2, y, r2, Math.PI-ang2/2, Math.PI + ang2/2);
-		ctx.strokeStyle="rgba(0,150,255, 1)";
-		ctx.fillStyle="rgba(0,150,255, 0.3)";
-		ctx.fill();
+		ctx.arc(x1/2+4000, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(x2/2-4000, 0, radius, 0, 2 * Math.PI, false);
 		ctx.stroke();
+
+		// ctx.beginPath();
+		// ctx.arc(x1, y, r1, -ang1/2, ang1/2);
+		// ctx.arc(x2, y, r2, Math.PI-ang2/2, Math.PI + ang2/2);
+		// ctx.strokeStyle="rgba(0,150,255, 1)";
+		// ctx.fillStyle="rgba(0,150,255, 0.3)";
+		// ctx.fill();
+		// ctx.stroke();
 		
 		// gambar garis x
 		ctx.strokeStyle="black";
