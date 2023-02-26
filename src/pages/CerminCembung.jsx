@@ -63,10 +63,10 @@ export default function CerminCembung() {
 		ctx.fill();
 
 
-		var radius = 4000;
+		var radius = 100;
 		ctx.beginPath();
-		ctx.arc(x1/2+4000, 0, radius, 0, 2 * Math.PI, false);
-		ctx.arc(x2/2-4000, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(x1/2+100, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(x2/2-100, 0, radius, 0, 2 * Math.PI, false);
 		ctx.stroke();
 
 		// ctx.beginPath();
