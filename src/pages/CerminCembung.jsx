@@ -1,13 +1,29 @@
 import React, { useContext } from "react";
 
+import useConfig from "../hooks/useConfig";
 import PageSizeContext from "../contexts/PageSizeContext";
 import Canvas from "../components/Canvas";
 
 export default function CerminCembung() {
-  const { width, height } = useContext(PageSizeContext);
+	const { width: windowWidth, height: windowHeight } = useContext(PageSizeContext);
 
-  const initialDraw = (canvas, ctx) => {
-	if (canvas.getContext){
+	const canvasWidth = windowWidth / 5 * 4;
+	const canvasHeight = windowHeight / 5 * 4;
+
+	const rumusJarakBayangan = (titikFokus, jarakBenda) => {
+		return -((-titikFokus) * jarakBenda) / (jarakBenda - (-titikFokus));
+	}
+
+	const rumusUkuranBayangan = (jarakBayanganBaru, ukuranBenda, jarakBenda) => {
+		return (jarakBayanganBaru * ukuranBenda) / jarakBenda
+	}
+
+	const {
+		setter: [setUkuranBenda, setJarakBenda, setTitikFokus],
+		value: [ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan],
+	} = useConfig({ rumusJarakBayangan, rumusUkuranBayangan });
+
+	const initialDraw = (canvas, ctx) => {
 		const cwidth = canvas.width
 		const cheight = canvas.height
 		ctx.translate(cwidth - cwidth/2, cheight - cheight/2);
@@ -20,7 +36,6 @@ export default function CerminCembung() {
 		var lens_height = 100;
 		var lens_x = 0;
 		var y = 0;
-		
 		
 		//========================
 		//   CIRCLE 1
@@ -63,10 +78,10 @@ export default function CerminCembung() {
 		ctx.fill();
 
 
-		var radius = 100;
+		var radius = 4000;
 		ctx.beginPath();
-		ctx.arc(x1/2+100, 0, radius, 0, 2 * Math.PI, false);
-		ctx.arc(x2/2-100, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(x1/2+4000, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(x2/2-4000, 0, radius, 0, 2 * Math.PI, false);
 		ctx.stroke();
 
 		// ctx.beginPath();
@@ -88,25 +103,17 @@ export default function CerminCembung() {
 		ctx.lineTo(start, end);
 		ctx.stroke();
 		
-		
-		
-		
-		
-		
 		ctx.strokeStyle="black";
 		ctx.fillStyle="black";
 		//==========================
 		//      Benda
 		//==========================
-		var arrow_height = 50;
-		var arrow_dist = 200;
-		
 		ctx.beginPath();
-		ctx.moveTo(-arrow_dist, 0);
-		ctx.lineTo(-arrow_dist, arrow_height);
-		ctx.lineTo(-arrow_dist - 3, arrow_height - 5);
-		ctx.moveTo(-arrow_dist, arrow_height);
-		ctx.lineTo(-arrow_dist + 3, arrow_height - 5);
+		ctx.moveTo(-jarakBenda, 0);
+		ctx.lineTo(-jarakBenda, ukuranBenda);
+		ctx.lineTo(-jarakBenda - 3, ukuranBenda - 5);
+		ctx.moveTo(-jarakBenda, ukuranBenda);
+		ctx.lineTo(-jarakBenda + 3, ukuranBenda - 5);
 		ctx.stroke();
 
 
@@ -115,19 +122,13 @@ export default function CerminCembung() {
 		//==========================
 		//      Bayangan
 		//==========================
-		const jarakBayangan = -((-x1) * arrow_dist) / (arrow_dist - (-x1))
-
-		const tinggiBayangan = (jarakBayangan * arrow_height)/arrow_dist
-
-		console.log(x1);
-		console.log(arrow_dist);
 
 		ctx.beginPath();
 		ctx.moveTo(-jarakBayangan, 0);
-		ctx.lineTo(-jarakBayangan, tinggiBayangan);
-		ctx.lineTo(-jarakBayangan - 3, tinggiBayangan + 5);
-		ctx.moveTo(-jarakBayangan, tinggiBayangan);
-		ctx.lineTo(-jarakBayangan + 3, tinggiBayangan + 5);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan - 3, ukuranBayangan + 5);
+		ctx.moveTo(-jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan + 3, ukuranBayangan + 5);
 		ctx.stroke();
 
 
@@ -136,33 +137,30 @@ export default function CerminCembung() {
 		ctx.fillStyle="purple";
 		
 		ctx.beginPath();
-		ctx.moveTo(0, tinggiBayangan);
-		ctx.lineTo(-jarakBayangan, tinggiBayangan);
+		ctx.moveTo(0, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
 		ctx.moveTo(0, 0);
-		ctx.lineTo(-jarakBayangan, tinggiBayangan);
-		ctx.moveTo(0, arrow_height);
-		ctx.lineTo(-jarakBayangan, tinggiBayangan);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
+		ctx.moveTo(0, ukuranBenda);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
 		ctx.stroke();
 
 		ctx.strokeStyle="red";
 		ctx.fillStyle="red";
 
 		ctx.beginPath();
-		ctx.moveTo(0, arrow_height);
-		ctx.lineTo(-arrow_dist, arrow_height);
+		ctx.moveTo(0, ukuranBenda);
+		ctx.lineTo(-jarakBenda, ukuranBenda);
 		ctx.moveTo(0, 0);
-		ctx.lineTo(-arrow_dist, arrow_height);
-		ctx.moveTo(0, tinggiBayangan);
-		ctx.lineTo(-arrow_dist, arrow_height);
+		ctx.lineTo(-jarakBenda, ukuranBenda);
+		ctx.moveTo(0, ukuranBayangan);
+		ctx.lineTo(-jarakBenda, ukuranBenda);
 		ctx.stroke();
-
 	}
-    
-  }
 
-  return (
-    <div>
-      <Canvas initialDraw={initialDraw} width={width} height={height} />
-    </div>
-  );
+	return (
+		<div className="p-20">
+			<Canvas initialDraw={initialDraw} width={canvasWidth} height={canvasHeight} />
+		</div>
+	);
 }
