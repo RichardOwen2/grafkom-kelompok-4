@@ -121,7 +121,7 @@ export default function CerminCembung() {
 		ctx.strokeStyle="blue";
 		ctx.fillStyle="blue";
 		ctx.beginPath();
-		ctx.arc(x1, y, r1, Math.PI * 2, 0);
+		ctx.arc(x1, y, r1, 0, 0);
 		ctx.stroke();
 		ctx.beginPath();
 		ctx.rect(x1 - rect/2, y - rect/2, rect, rect);
@@ -131,7 +131,7 @@ export default function CerminCembung() {
 		ctx.strokeStyle="red";
 		ctx.fillStyle="red";
 		ctx.beginPath();
-		ctx.arc(x2, y, r2, Math.PI * 2, 0);
+		ctx.arc(x2, y, r2, 0, 0);
 		ctx.stroke();
 		ctx.beginPath();
 		ctx.rect(x2 - rect/2, y - rect/2, rect, rect);
