@@ -125,11 +125,28 @@ export default function CerminCembung() {
 		ctx.rect(x1 - rect/2, y - rect/2, rect, rect);
 		ctx.fill();
 		
-		// ctx.strokeStyle="red";
-		// ctx.fillStyle="red";
-		// ctx.beginPath();
-		// ctx.rect(x2 - rect/2, y - rect/2, rect, rect);
-		// ctx.fill();
+		ctx.strokeStyle="red";
+		ctx.fillStyle="red";
+		ctx.beginPath();
+		ctx.rect(x2 - rect/2, y - rect/2, rect, rect);
+		ctx.fill();
+
+		//baut titik 2 fokus
+		ctx.strokeStyle="blue";
+		ctx.fillStyle="blue";
+		ctx.beginPath();
+		ctx.rect(x1 + x1 - rect/2, y - rect/2, rect, rect);
+		ctx.fill();
+		
+		ctx.strokeStyle="red";
+		ctx.fillStyle="red";
+		ctx.beginPath();
+		ctx.rect(x2 + x2 - (rect/2)*2, y - rect/2, rect, rect);
+		ctx.fill();
+
+
+
+
 
 		ctx.beginPath();
 		ctx.arc(x1, y, r1, -ang1/2, ang1/2);
@@ -158,7 +175,7 @@ export default function CerminCembung() {
 		ctx.strokeStyle="black";
 		ctx.fillStyle="black";
 		//==========================
-		//      ARROW
+		//      Benda
 		//==========================
 		var arrow_height = 50;
 		var arrow_dist = 200;
@@ -170,6 +187,54 @@ export default function CerminCembung() {
 		ctx.moveTo(-arrow_dist, arrow_height);
 		ctx.lineTo(-arrow_dist + 3, arrow_height - 5);
 		ctx.stroke();
+
+
+		ctx.strokeStyle="black";
+		ctx.fillStyle="black";
+		//==========================
+		//      Bayangan
+		//==========================
+		const jarakBayangan = -((-x1) * arrow_dist) / (arrow_dist - (-x1))
+
+		const tinggiBayangan = (jarakBayangan * arrow_height)/arrow_dist
+
+		console.log(x1);
+		console.log(arrow_dist);
+
+		ctx.beginPath();
+		ctx.moveTo(-jarakBayangan, 0);
+		ctx.lineTo(-jarakBayangan, tinggiBayangan);
+		ctx.lineTo(-jarakBayangan - 3, tinggiBayangan + 5);
+		ctx.moveTo(-jarakBayangan, tinggiBayangan);
+		ctx.lineTo(-jarakBayangan + 3, tinggiBayangan + 5);
+		ctx.stroke();
+
+
+		// gambar garis bayangan dan cahaya
+		ctx.strokeStyle="purple";
+		ctx.fillStyle="purple";
+		
+		ctx.beginPath();
+		ctx.moveTo(0, tinggiBayangan);
+		ctx.lineTo(-jarakBayangan, tinggiBayangan);
+		ctx.moveTo(0, 0);
+		ctx.lineTo(-jarakBayangan, tinggiBayangan);
+		ctx.moveTo(0, arrow_height);
+		ctx.lineTo(-jarakBayangan, tinggiBayangan);
+		ctx.stroke();
+
+		ctx.strokeStyle="red";
+		ctx.fillStyle="red";
+
+		ctx.beginPath();
+		ctx.moveTo(0, arrow_height);
+		ctx.lineTo(-arrow_dist, arrow_height);
+		ctx.moveTo(0, 0);
+		ctx.lineTo(-arrow_dist, arrow_height);
+		ctx.moveTo(0, tinggiBayangan);
+		ctx.lineTo(-arrow_dist, arrow_height);
+		ctx.stroke();
+
 	}
     
   }
