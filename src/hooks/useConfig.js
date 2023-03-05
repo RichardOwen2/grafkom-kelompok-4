@@ -20,18 +20,16 @@ export default function useConfig({ rumusJarakBayangan, rumusUkuranBayangan }) {
   }, [ukuranBenda, titikFokus, jarakBenda, rumusJarakBayangan, rumusUkuranBayangan])
 
   const onUkuranBendaChange = (event) => {
-    setUkuranBenda(event.target.value)
+    setUkuranBenda(Number(event.target.value))
   }
 
   const onJarakBendaChange = (event) => {
-    setJarakBenda(event.target.value)
+    setJarakBenda(Number(event.target.value))
   }
 
   const onTitikFokusChange = (event) => {
-    setTitikFokus(event.target.value)
+    setTitikFokus(Number(event.target.value))
   }
-
-  console.log([jarakBayangan, ukuranBayangan])
 
   return {
     setter: [onUkuranBendaChange, onJarakBendaChange, onTitikFokusChange],
