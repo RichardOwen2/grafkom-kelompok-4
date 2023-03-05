@@ -26,7 +26,7 @@ export default function LensaCekung() {
 	const initialDraw = (canvas, ctx) => {
 		const cwidth = canvas.width
 		const cheight = canvas.height
-		ctx.translate(cwidth - cwidth / 2, cheight - cheight / 2);
+		ctx.setTransform(1, 0, 0, 1, cwidth / 2, cheight / 2);
 		ctx.scale(1, -1);
 		// grid();
 		ctx.strokeStyle = "black";

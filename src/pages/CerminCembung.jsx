@@ -26,15 +26,12 @@ export default function CerminCembung() {
 	const initialDraw = (canvas, ctx) => {
 		const cwidth = canvas.width
 		const cheight = canvas.height
-		ctx.translate(cwidth - cwidth / 2, cheight - cheight / 2);
+		ctx.setTransform(1, 0, 0, 1, cwidth / 2, cheight / 2);
 		ctx.scale(1, -1);
 		// grid();
 		ctx.strokeStyle = "black";
 
 		var rect = 5;
-
-		var lens_height = 100;
-		var lens_x = 0;
 		var y = 0;
 
 		//========================
@@ -42,14 +39,12 @@ export default function CerminCembung() {
 		//========================
 		//VARIABLES
 		var x1 = -100;
-		var r1 = 100;
 
 		//========================
 		//   CIRCLE 2
 		//========================
 		//VARIABLES
 		var x2 = -x1;
-		var r2 = 100;
 
 		// buat titik fokus
 		ctx.strokeStyle = "blue";
@@ -126,9 +121,9 @@ export default function CerminCembung() {
 		ctx.beginPath();
 		ctx.moveTo(jarakBayangan, 0);
 		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan - 3, ukuranBayangan + 5);
+		ctx.lineTo(jarakBayangan - 3, ukuranBayangan - 5);
 		ctx.moveTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan + 3, ukuranBayangan + 5);
+		ctx.lineTo(jarakBayangan + 3, ukuranBayangan - 5);
 		ctx.stroke();
 
 
