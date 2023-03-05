@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import useInput from './useInput';
 
 export default function useConfig({ titikfokus, rumusJarakBayangan, rumusUkuranBayangan }) {
-  const [ukuranBenda, setUkuranBenda] = useState(50);
-  const [jarakBenda, setJarakBenda] = useState(200);
-  const [titikFokus, setTitikFokus] = useState(titikfokus);
+  const [ukuranBenda, onUkuranBendaChange] = useInput(50);
+  const [jarakBenda, onJarakBendaChange] = useInput(200);
+  const [titikFokus, onTitikFokusChange] = useInput(titikfokus);
 
   const jarakBayanganBaru = rumusJarakBayangan(titikFokus, jarakBenda);
   const ukuranBayanganBaru = rumusUkuranBayangan(jarakBayanganBaru, ukuranBenda, jarakBenda);
@@ -18,18 +19,6 @@ export default function useConfig({ titikfokus, rumusJarakBayangan, rumusUkuranB
     setJarakBayangan(jarakBayanganBaru);
     setukuranBayangan(ukuranBayanganBaru);
   }, [ukuranBenda, titikFokus, jarakBenda, rumusJarakBayangan, rumusUkuranBayangan])
-
-  const onUkuranBendaChange = (event) => {
-    setUkuranBenda(Number(event.target.value))
-  }
-
-  const onJarakBendaChange = (event) => {
-    setJarakBenda(Number(event.target.value))
-  }
-
-  const onTitikFokusChange = (event) => {
-    setTitikFokus(Number(event.target.value))
-  }
 
   return {
     setter: [onUkuranBendaChange, onJarakBendaChange, onTitikFokusChange],
