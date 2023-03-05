@@ -7,6 +7,8 @@ import LensaCekung from "./pages/LensaCekung";
 import CerminCekung from "./pages/CerminCekung";
 import CerminCembung from "./pages/CerminCembung";
 
+import Navbar from "./components/Navbar";
+
 export default function App() {
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
@@ -27,12 +29,17 @@ export default function App() {
 
   return (
     <PageSizeContext.Provider value={windowDimensions}>
-      <Routes>
-        <Route path={'/lensa/cembung'} element={<LensaCembung />} />
-        <Route path={'/lensa/cekung'} element={<LensaCekung />} />
-        <Route path={'/cermin/cekung'} element={<CerminCekung />} />
-        <Route path={'/cermin/cembung'} element={<CerminCembung />} />
-      </Routes>
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <Routes>
+          <Route path={'/lensa/cembung'} element={<LensaCembung />} />
+          <Route path={'/lensa/cekung'} element={<LensaCekung />} />
+          <Route path={'/cermin/cekung'} element={<CerminCekung />} />
+          <Route path={'/cermin/cembung'} element={<CerminCembung />} />
+        </Routes>
+      </main>
     </PageSizeContext.Provider>
   );
 }

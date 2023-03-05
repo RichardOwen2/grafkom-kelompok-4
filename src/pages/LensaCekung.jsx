@@ -11,7 +11,6 @@ export default function LensaCekung() {
 	const canvasHeight = windowHeight / 5 * 4;
 
 	const rumusJarakBayangan = (titikFokus, jarakBenda) => {
-        console.log(-(titikFokus * jarakBenda) / (jarakBenda + titikFokus))
 		return -(titikFokus * jarakBenda) / (jarakBenda + titikFokus);
 	}
 
