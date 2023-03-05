@@ -9,7 +9,8 @@ export default function Canvas({ initialDraw, width, height }) {
 
     context.clearRect(0, 0, canvas.width, canvas.height)
     initialDraw(canvas, context);
-  }, [initialDraw]);
+    console.log('p')
+  }, [initialDraw, width, height]);
 
   return <canvas ref={canvasRef} width={width} height={height} />;
 }

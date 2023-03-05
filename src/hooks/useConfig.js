@@ -17,10 +17,24 @@ export default function useConfig({ rumusJarakBayangan, rumusUkuranBayangan }) {
 
     setJarakBayangan(jarakBayanganBaru);
     setukuranBayangan(ukuranBayanganBaru);
-  }, [ukuranBenda, titikFokus, jarakBenda])
-  
+  }, [ukuranBenda, titikFokus, jarakBenda, rumusJarakBayangan, rumusUkuranBayangan])
+
+  const onUkuranBendaChange = (event) => {
+    setUkuranBenda(event.target.value)
+  }
+
+  const onJarakBendaChange = (event) => {
+    setJarakBenda(event.target.value)
+  }
+
+  const onTitikFokusChange = (event) => {
+    setTitikFokus(event.target.value)
+  }
+
+  console.log([jarakBayangan, ukuranBayangan])
+
   return {
-    setter: [setUkuranBenda, setJarakBenda, setTitikFokus],
+    setter: [onUkuranBendaChange, onJarakBendaChange, onTitikFokusChange],
     value: [ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan],
   };
 }

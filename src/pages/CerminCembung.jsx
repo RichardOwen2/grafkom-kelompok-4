@@ -19,11 +19,9 @@ export default function CerminCembung() {
 	}
 
 	const {
-		setter: [setUkuranBenda, setJarakBenda, setTitikFokus],
+		setter: [onUkuranBendaChange, onJarakBendaChange, onTitikFokusChange],
 		value: [ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan],
 	} = useConfig({ rumusJarakBayangan, rumusUkuranBayangan });
-
-	console.log([ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan])
 
 	const initialDraw = (canvas, ctx) => {
 		const cwidth = canvas.width
@@ -162,6 +160,14 @@ export default function CerminCembung() {
 
 	return (
 		<div className="p-20">
+			<label htmlFor="ukuranBenda">Ukuran Benda</label>
+			<input
+				id="ukuranBenda"
+				name="ukuranBenda"
+				type="number"
+				onChange={onUkuranBendaChange}
+				value={ukuranBenda} 
+			/>
 			<Canvas initialDraw={initialDraw} width={canvasWidth} height={canvasHeight} />
 		</div>
 	);
