@@ -4,7 +4,7 @@ import useConfig from "../hooks/useConfig";
 import PageSizeContext from "../contexts/PageSizeContext";
 import Canvas from "../components/Canvas";
 
-export default function CerminCembung() {
+export default function CerminCekung() {
 	const { width: windowWidth, height: windowHeight } = useContext(PageSizeContext);
 
 	const canvasWidth = windowWidth / 5 * 4;
@@ -21,7 +21,7 @@ export default function CerminCembung() {
 	const {
 		setter: [onUkuranBendaChange, onJarakBendaChange, onTitikFokusChange],
 		value: [ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan],
-	} = useConfig({ titikfokus: 100, rumusJarakBayangan, rumusUkuranBayangan });
+	} = useConfig({ titikfokus: -100, rumusJarakBayangan, rumusUkuranBayangan });
 
 	const initialDraw = (canvas, ctx) => {
 		const cwidth = canvas.width
@@ -32,6 +32,9 @@ export default function CerminCembung() {
 		ctx.strokeStyle = "black";
 
 		var rect = 5;
+
+		var lens_height = 100;
+		var lens_x = 0;
 		var y = 0;
 
 		//========================
@@ -39,12 +42,14 @@ export default function CerminCembung() {
 		//========================
 		//VARIABLES
 		var x1 = -100;
+		var r1 = 100;
 
 		//========================
 		//   CIRCLE 2
 		//========================
 		//VARIABLES
 		var x2 = -x1;
+		var r2 = 100;
 
 		// buat titik fokus
 		ctx.strokeStyle = "blue";
@@ -73,10 +78,10 @@ export default function CerminCembung() {
 		ctx.fill();
 
 
-		var radius = 4000;
+		var radius = 2000;
 		ctx.beginPath();
-		ctx.arc(x1 / 2 + 4000, 0, radius, 0, 2 * Math.PI, false);
-		ctx.arc(x2 / 2 - 4000, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(x1 / 2 - 2000, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(x2 / 2 + 2000, 0, radius, 0, 2 * Math.PI, false);
 		ctx.stroke();
 
 		// ctx.beginPath();
@@ -121,9 +126,9 @@ export default function CerminCembung() {
 		ctx.beginPath();
 		ctx.moveTo(jarakBayangan, 0);
 		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan - 3, ukuranBayangan - 5);
+		ctx.lineTo(jarakBayangan - 3, ukuranBayangan + 5);
 		ctx.moveTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan + 3, ukuranBayangan - 5);
+		ctx.lineTo(jarakBayangan + 3, ukuranBayangan + 5);
 		ctx.stroke();
 
 

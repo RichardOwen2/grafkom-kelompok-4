@@ -21,7 +21,7 @@ export default function CerminCembung() {
 	const {
 		setter: [onUkuranBendaChange, onJarakBendaChange, onTitikFokusChange],
 		value: [ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan],
-	} = useConfig({ titikfokus: 100, rumusJarakBayangan, rumusUkuranBayangan });
+	} = useConfig({ titikfokus: -100, rumusJarakBayangan, rumusUkuranBayangan });
 
 	const initialDraw = (canvas, ctx) => {
 		const cwidth = canvas.width
@@ -32,6 +32,9 @@ export default function CerminCembung() {
 		ctx.strokeStyle = "black";
 
 		var rect = 5;
+
+		var lens_height = 100;
+		var lens_x = 0;
 		var y = 0;
 
 		//========================
@@ -39,12 +42,14 @@ export default function CerminCembung() {
 		//========================
 		//VARIABLES
 		var x1 = -100;
+		var r1 = 100;
 
 		//========================
 		//   CIRCLE 2
 		//========================
 		//VARIABLES
 		var x2 = -x1;
+		var r2 = 100;
 
 		// buat titik fokus
 		ctx.strokeStyle = "blue";
@@ -90,11 +95,11 @@ export default function CerminCembung() {
 		// gambar garis x
 		ctx.strokeStyle = "black";
 		ctx.fillStyle = "black";
-		var start = cwidth;
+		var start = cwidth / 3;
 		var end = 0;
 
 		ctx.beginPath();
-		ctx.moveTo(-cwidth, 0);
+		ctx.moveTo(-cwidth / 3, 0);
 		ctx.lineTo(start, end);
 		ctx.stroke();
 
@@ -119,11 +124,11 @@ export default function CerminCembung() {
 		//==========================
 
 		ctx.beginPath();
-		ctx.moveTo(jarakBayangan, 0);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan - 3, ukuranBayangan - 5);
-		ctx.moveTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan + 3, ukuranBayangan - 5);
+		ctx.moveTo(-jarakBayangan, 0);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan - 3, ukuranBayangan + 5);
+		ctx.moveTo(-jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan + 3, ukuranBayangan + 5);
 		ctx.stroke();
 
 
@@ -133,11 +138,11 @@ export default function CerminCembung() {
 
 		ctx.beginPath();
 		ctx.moveTo(0, ukuranBayangan);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
 		ctx.moveTo(0, 0);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
 		ctx.moveTo(0, ukuranBenda);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
 		ctx.stroke();
 
 		ctx.strokeStyle = "red";
