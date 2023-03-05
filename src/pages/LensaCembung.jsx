@@ -21,7 +21,7 @@ export default function CerminCembung() {
 	const {
 		setter: [onUkuranBendaChange, onJarakBendaChange, onTitikFokusChange],
 		value: [ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan],
-	} = useConfig({ rumusJarakBayangan, rumusUkuranBayangan });
+	} = useConfig({ titikfokus: -100, rumusJarakBayangan, rumusUkuranBayangan });
 
 	const initialDraw = (canvas, ctx) => {
 		const cwidth = canvas.width

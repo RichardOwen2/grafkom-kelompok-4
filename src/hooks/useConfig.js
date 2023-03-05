@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-export default function useConfig({ rumusJarakBayangan, rumusUkuranBayangan }) {
+export default function useConfig({ titikfokus, rumusJarakBayangan, rumusUkuranBayangan }) {
   const [ukuranBenda, setUkuranBenda] = useState(50);
   const [jarakBenda, setJarakBenda] = useState(200);
-  const [titikFokus, setTitikFokus] = useState(100);
+  const [titikFokus, setTitikFokus] = useState(titikfokus);
 
   const jarakBayanganBaru = rumusJarakBayangan(titikFokus, jarakBenda);
   const ukuranBayanganBaru = rumusUkuranBayangan(jarakBayanganBaru, ukuranBenda, jarakBenda);
