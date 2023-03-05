@@ -28,13 +28,9 @@ export default function CerminCembung() {
 		const cheight = canvas.height
 		ctx.setTransform(1, 0, 0, 1, cwidth / 2, cheight / 2);
 		ctx.scale(1, -1);
-		// grid();
 		ctx.strokeStyle = "black";
 
 		var rect = 5;
-
-		var lens_height = 100;
-		var lens_x = 0;
 		var y = 0;
 
 		//========================
@@ -42,14 +38,12 @@ export default function CerminCembung() {
 		//========================
 		//VARIABLES
 		var x1 = -100;
-		var r1 = 100;
 
 		//========================
 		//   CIRCLE 2
 		//========================
 		//VARIABLES
 		var x2 = -x1;
-		var r2 = 100;
 
 		// buat titik fokus
 		ctx.strokeStyle = "blue";
