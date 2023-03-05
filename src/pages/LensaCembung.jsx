@@ -95,11 +95,11 @@ export default function CerminCembung() {
 		// gambar garis x
 		ctx.strokeStyle = "black";
 		ctx.fillStyle = "black";
-		var start = cwidth;
+		var start = cwidth / 3;
 		var end = 0;
 
 		ctx.beginPath();
-		ctx.moveTo(-cwidth, 0);
+		ctx.moveTo(-cwidth / 3, 0);
 		ctx.lineTo(start, end);
 		ctx.stroke();
 
@@ -124,11 +124,11 @@ export default function CerminCembung() {
 		//==========================
 
 		ctx.beginPath();
-		ctx.moveTo(jarakBayangan, 0);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan - 3, ukuranBayangan + 5);
-		ctx.moveTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan + 3, ukuranBayangan + 5);
+		ctx.moveTo(-jarakBayangan, 0);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan - 3, ukuranBayangan + 5);
+		ctx.moveTo(-jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan + 3, ukuranBayangan + 5);
 		ctx.stroke();
 
 
@@ -138,11 +138,11 @@ export default function CerminCembung() {
 
 		ctx.beginPath();
 		ctx.moveTo(0, ukuranBayangan);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
 		ctx.moveTo(0, 0);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
 		ctx.moveTo(0, ukuranBenda);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
 		ctx.stroke();
 
 		ctx.strokeStyle = "red";

@@ -4,14 +4,15 @@ import useConfig from "../hooks/useConfig";
 import PageSizeContext from "../contexts/PageSizeContext";
 import Canvas from "../components/Canvas";
 
-export default function CerminCembung() {
+export default function LensaCekung() {
 	const { width: windowWidth, height: windowHeight } = useContext(PageSizeContext);
 
 	const canvasWidth = windowWidth / 5 * 4;
 	const canvasHeight = windowHeight / 5 * 4;
 
 	const rumusJarakBayangan = (titikFokus, jarakBenda) => {
-		return -((-titikFokus) * jarakBenda) / (jarakBenda - (-titikFokus));
+        console.log(-(titikFokus * jarakBenda) / (jarakBenda + titikFokus))
+		return -(titikFokus * jarakBenda) / (jarakBenda + titikFokus);
 	}
 
 	const rumusUkuranBayangan = (jarakBayanganBaru, ukuranBenda, jarakBenda) => {
@@ -95,11 +96,11 @@ export default function CerminCembung() {
 		// gambar garis x
 		ctx.strokeStyle = "black";
 		ctx.fillStyle = "black";
-		var start = cwidth;
+		var start = cwidth / 3;
 		var end = 0;
 
 		ctx.beginPath();
-		ctx.moveTo(-cwidth, 0);
+		ctx.moveTo(-cwidth / 3, 0);
 		ctx.lineTo(start, end);
 		ctx.stroke();
 
@@ -124,38 +125,38 @@ export default function CerminCembung() {
 		//==========================
 
 		ctx.beginPath();
-		ctx.moveTo(jarakBayangan, 0);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan - 3, ukuranBayangan + 5);
-		ctx.moveTo(jarakBayangan, ukuranBayangan);
-		ctx.lineTo(jarakBayangan + 3, ukuranBayangan + 5);
+		ctx.moveTo(-jarakBayangan, 0);
+		ctx.lineTo(-jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan - 3, ukuranBayangan + 5);
+		ctx.moveTo(-jarakBayangan, ukuranBayangan);
+		ctx.lineTo(-jarakBayangan + 3, ukuranBayangan + 5);
 		ctx.stroke();
 
 
 		// gambar garis bayangan dan cahaya
-		ctx.strokeStyle = "purple";
-		ctx.fillStyle = "purple";
+		// ctx.strokeStyle = "purple";
+		// ctx.fillStyle = "purple";
 
-		ctx.beginPath();
-		ctx.moveTo(0, ukuranBayangan);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.moveTo(0, 0);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.moveTo(0, ukuranBenda);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.stroke();
+		// ctx.beginPath();
+		// ctx.moveTo(0, ukuranBayangan);
+		// ctx.lineTo(-jarakBayangan, ukuranBayangan);
+		// ctx.moveTo(0, 0);
+		// ctx.lineTo(-jarakBayangan, ukuranBayangan);
+		// ctx.moveTo(0, ukuranBenda);
+		// ctx.lineTo(-jarakBayangan, ukuranBayangan);
+		// ctx.stroke();
 
-		ctx.strokeStyle = "red";
-		ctx.fillStyle = "red";
+		// ctx.strokeStyle = "red";
+		// ctx.fillStyle = "red";
 
-		ctx.beginPath();
-		ctx.moveTo(0, ukuranBenda);
-		ctx.lineTo(-jarakBenda, ukuranBenda);
-		ctx.moveTo(0, 0);
-		ctx.lineTo(-jarakBenda, ukuranBenda);
-		ctx.moveTo(0, ukuranBayangan);
-		ctx.lineTo(-jarakBenda, ukuranBenda);
-		ctx.stroke();
+		// ctx.beginPath();
+		// ctx.moveTo(0, ukuranBenda);
+		// ctx.lineTo(-jarakBenda, ukuranBenda);
+		// ctx.moveTo(0, 0);
+		// ctx.lineTo(-jarakBenda, ukuranBenda);
+		// ctx.moveTo(0, ukuranBayangan);
+		// ctx.lineTo(-jarakBenda, ukuranBenda);
+		// ctx.stroke();
 	}
 
 	return (

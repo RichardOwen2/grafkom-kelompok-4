@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export default function useConfig({ rumusJarakBayangan, rumusUkuranBayangan }) {
   const [ukuranBenda, setUkuranBenda] = useState(50);
   const [jarakBenda, setJarakBenda] = useState(200);
-  const [titikFokus, setTitikFokus] = useState(-100);
+  const [titikFokus, setTitikFokus] = useState(100);
 
   const jarakBayanganBaru = rumusJarakBayangan(titikFokus, jarakBenda);
   const ukuranBayanganBaru = rumusUkuranBayangan(jarakBayanganBaru, ukuranBenda, jarakBenda);
@@ -17,10 +17,22 @@ export default function useConfig({ rumusJarakBayangan, rumusUkuranBayangan }) {
 
     setJarakBayangan(jarakBayanganBaru);
     setukuranBayangan(ukuranBayanganBaru);
-  }, [ukuranBenda, titikFokus, jarakBenda])
-  
+  }, [ukuranBenda, titikFokus, jarakBenda, rumusJarakBayangan, rumusUkuranBayangan])
+
+  const onUkuranBendaChange = (event) => {
+    setUkuranBenda(Number(event.target.value))
+  }
+
+  const onJarakBendaChange = (event) => {
+    setJarakBenda(Number(event.target.value))
+  }
+
+  const onTitikFokusChange = (event) => {
+    setTitikFokus(Number(event.target.value))
+  }
+
   return {
-    setter: [setUkuranBenda, setJarakBenda, setTitikFokus],
+    setter: [onUkuranBendaChange, onJarakBendaChange, onTitikFokusChange],
     value: [ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan],
   };
 }

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 
 import PageSizeContext from "./contexts/PageSizeContext";
+import LensaCembung from "./pages/LensaCembung";
+import LensaCekung from "./pages/LensaCekung";
+import CerminCekung from "./pages/CerminCekung";
 import CerminCembung from "./pages/CerminCembung";
 
 export default function App() {
@@ -25,7 +28,10 @@ export default function App() {
   return (
     <PageSizeContext.Provider value={windowDimensions}>
       <Routes>
-        <Route path={'/'} element={<CerminCembung />} />
+        <Route path={'/lensa/cembung'} element={<LensaCembung />} />
+        <Route path={'/lensa/cekung'} element={<LensaCekung />} />
+        <Route path={'/cermin/cekung'} element={<CerminCekung />} />
+        <Route path={'/cermin/cembung'} element={<CerminCembung />} />
       </Routes>
     </PageSizeContext.Provider>
   );

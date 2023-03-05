@@ -4,7 +4,7 @@ import useConfig from "../hooks/useConfig";
 import PageSizeContext from "../contexts/PageSizeContext";
 import Canvas from "../components/Canvas";
 
-export default function CerminCembung() {
+export default function CerminCekung() {
 	const { width: windowWidth, height: windowHeight } = useContext(PageSizeContext);
 
 	const canvasWidth = windowWidth / 5 * 4;
@@ -78,10 +78,10 @@ export default function CerminCembung() {
 		ctx.fill();
 
 
-		var radius = 4000;
+		var radius = 2000;
 		ctx.beginPath();
-		ctx.arc(x1 / 2 + 4000, 0, radius, 0, 2 * Math.PI, false);
-		ctx.arc(x2 / 2 - 4000, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(x1 / 2 - 2000, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(x2 / 2 + 2000, 0, radius, 0, 2 * Math.PI, false);
 		ctx.stroke();
 
 		// ctx.beginPath();
