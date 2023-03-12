@@ -23,6 +23,37 @@ export default function CerminCekung() {
 		value: [ukuranBenda, jarakBenda, titikFokus, jarakBayangan, ukuranBayangan],
 	} = useConfig({ titikfokus: -100, rumusJarakBayangan, rumusUkuranBayangan });
 
+	const dda = (x1, y1, x2, y2, ctx, isShadow = false) => {
+		const dx = x2 - x1;
+		const dy = y2 - y1;
+
+		let steps = Math.max(Math.abs(dx), Math.abs(dy));
+
+		const xIncrement = dx / steps;
+		const yIncrement = dy / steps;
+
+		let x = x1;
+    	let y = y1;
+
+		ctx.beginPath();
+		let i;
+		if (isShadow) {
+			i = -1000;
+		} else {
+			i = 0;
+		}
+		while (i < steps) {
+			ctx.moveTo(x, y);
+			ctx.lineTo(x += xIncrement, y += yIncrement);
+			console.log(x, y)
+
+			i++
+		}
+	
+		ctx.stroke();
+	}
+	
+
 	const initialDraw = (canvas, ctx) => {
 		const cwidth = canvas.width
 		const cheight = canvas.height
@@ -136,14 +167,9 @@ export default function CerminCekung() {
 		ctx.strokeStyle = "purple";
 		ctx.fillStyle = "purple";
 
-		ctx.beginPath();
-		ctx.moveTo(0, ukuranBayangan);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.moveTo(0, 0);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.moveTo(0, ukuranBenda);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.stroke();
+		dda(0, ukuranBayangan, jarakBayangan, ukuranBayangan, ctx, true)
+		dda(0, 0, jarakBayangan, ukuranBayangan, ctx, true)
+		dda(0, ukuranBenda, jarakBayangan, ukuranBayangan, ctx, true)
 
 		ctx.strokeStyle = "red";
 		ctx.fillStyle = "red";
