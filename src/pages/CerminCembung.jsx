@@ -85,7 +85,7 @@ export default function CerminCembung() {
 					<div className="offcanvas-body flex-grow overflow-y-auto p-4">
 						<Input id="ukuranBenda" label="Ukuran Benda" value={ukuranBenda} onChangeValue={onUkuranBendaChange} />
 						<hr className="" />
-						<Input id="jarakBenda" label="Jarak Benda" value={jarakBenda} onChangeValue={onJarakBendaChange} />
+						<Input id="jarakBenda" label="Jarak Benda" value={jarakBenda} onChangeValue={onJarakBendaChange} min={0} max={750} />
 						<hr className="" />
 						<Input id="titikFokus" label="Titik Fokus Benda" value={titikFokus} onChangeValue={onTitikFokusChange} min={30} max={160} />
 					</div>
