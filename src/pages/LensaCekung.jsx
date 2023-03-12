@@ -33,8 +33,6 @@ export default function LensaCekung() {
 
 		var rect = 5;
 
-		var lens_height = 100;
-		var lens_x = 0;
 		var y = 0;
 
 		//========================
@@ -42,14 +40,12 @@ export default function LensaCekung() {
 		//========================
 		//VARIABLES
 		var x1 = -100;
-		var r1 = 100;
 
 		//========================
 		//   CIRCLE 2
 		//========================
 		//VARIABLES
 		var x2 = -x1;
-		var r2 = 100;
 
 		// buat titik fokus
 		ctx.strokeStyle = "blue";
