@@ -3,12 +3,16 @@ import React, { useContext } from "react";
 import useConfig from "../hooks/useConfig";
 import PageSizeContext from "../contexts/PageSizeContext";
 import Canvas from "../components/Canvas";
+import Input from "../components/Input";
+import SideBarInput from "../components/SideBarInput";
+import dda from "../utils/dda";
+import baseGraf from "../utils/baseGraf";
 
 export default function CerminCembung() {
 	const { width: windowWidth, height: windowHeight } = useContext(PageSizeContext);
 
 	const canvasWidth = windowWidth / 5 * 4;
-	const canvasHeight = windowHeight / 5 * 4;
+	const canvasHeight = windowHeight / 7 * 4;
 
 	const rumusJarakBayangan = (titikFokus, jarakBenda) => {
 		return -((-titikFokus) * jarakBenda) / (jarakBenda - (-titikFokus));
@@ -24,85 +28,18 @@ export default function CerminCembung() {
 	} = useConfig({ titikfokus: 100, rumusJarakBayangan, rumusUkuranBayangan });
 
 	const initialDraw = (canvas, ctx) => {
-		const cwidth = canvas.width
-		const cheight = canvas.height
-		ctx.setTransform(1, 0, 0, 1, cwidth / 2, cheight / 2);
-		ctx.scale(1, -1);
-		// grid();
-		ctx.strokeStyle = "black";
+		baseGraf(titikFokus, canvas,ctx)
 
-		var rect = 5;
-		var y = 0;
-
-		//========================
-		//   CIRCLE 1
-		//========================
-		//VARIABLES
-		var x1 = -100;
-
-		//========================
-		//   CIRCLE 2
-		//========================
-		//VARIABLES
-		var x2 = -x1;
-
-		// buat titik fokus
-		ctx.strokeStyle = "blue";
-		ctx.fillStyle = "blue";
+		var radius = 800;
 		ctx.beginPath();
-		ctx.rect(x1 - rect / 2, y - rect / 2, rect, rect);
-		ctx.fill();
-
-		ctx.strokeStyle = "red";
-		ctx.fillStyle = "red";
-		ctx.beginPath();
-		ctx.rect(x2 - rect / 2, y - rect / 2, rect, rect);
-		ctx.fill();
-
-		//baut titik 2 fokus
-		ctx.strokeStyle = "blue";
-		ctx.fillStyle = "blue";
-		ctx.beginPath();
-		ctx.rect(x1 + x1 - rect / 2, y - rect / 2, rect, rect);
-		ctx.fill();
-
-		ctx.strokeStyle = "red";
-		ctx.fillStyle = "red";
-		ctx.beginPath();
-		ctx.rect(x2 + x2 - (rect / 2) * 2, y - rect / 2, rect, rect);
-		ctx.fill();
-
-
-		var radius = 4000;
-		ctx.beginPath();
-		ctx.arc(x1 / 2 + 4000, 0, radius, 0, 2 * Math.PI, false);
-		ctx.arc(x2 / 2 - 4000, 0, radius, 0, 2 * Math.PI, false);
+		ctx.arc(760+titikFokus*5, 0, radius+titikFokus*5, 0, 2 * Math.PI, false);
+		ctx.moveTo(0, canvasHeight);
+		ctx.lineTo(0, -canvasHeight);
 		ctx.stroke();
 
-		// ctx.beginPath();
-		// ctx.arc(x1, y, r1, -ang1/2, ang1/2);
-		// ctx.arc(x2, y, r2, Math.PI-ang2/2, Math.PI + ang2/2);
-		// ctx.strokeStyle="rgba(0,150,255, 1)";
-		// ctx.fillStyle="rgba(0,150,255, 0.3)";
-		// ctx.fill();
-		// ctx.stroke();
-
-		// gambar garis x
+		// Benda
 		ctx.strokeStyle = "black";
 		ctx.fillStyle = "black";
-		var start = cwidth;
-		var end = 0;
-
-		ctx.beginPath();
-		ctx.moveTo(-cwidth, 0);
-		ctx.lineTo(start, end);
-		ctx.stroke();
-
-		ctx.strokeStyle = "black";
-		ctx.fillStyle = "black";
-		//==========================
-		//      Benda
-		//==========================
 		ctx.beginPath();
 		ctx.moveTo(-jarakBenda, 0);
 		ctx.lineTo(-jarakBenda, ukuranBenda);
@@ -111,13 +48,9 @@ export default function CerminCembung() {
 		ctx.lineTo(-jarakBenda + 3, ukuranBenda - 5);
 		ctx.stroke();
 
-
+		// Bayangan
 		ctx.strokeStyle = "black";
 		ctx.fillStyle = "black";
-		//==========================
-		//      Bayangan
-		//==========================
-
 		ctx.beginPath();
 		ctx.moveTo(jarakBayangan, 0);
 		ctx.lineTo(jarakBayangan, ukuranBayangan);
@@ -131,64 +64,33 @@ export default function CerminCembung() {
 		ctx.strokeStyle = "purple";
 		ctx.fillStyle = "purple";
 
-		ctx.beginPath();
-		ctx.moveTo(0, ukuranBayangan);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.moveTo(0, 0);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.moveTo(0, ukuranBenda);
-		ctx.lineTo(jarakBayangan, ukuranBayangan);
-		ctx.stroke();
+		dda(jarakBayangan, ukuranBayangan, 0, ukuranBayangan, ctx, true)
+		dda(jarakBayangan, ukuranBayangan, 0 , 0, ctx, true)
+		dda(jarakBayangan, ukuranBayangan, 0, ukuranBenda, ctx, true)
 
 		ctx.strokeStyle = "red";
 		ctx.fillStyle = "red";
 
-		ctx.beginPath();
-		ctx.moveTo(0, ukuranBenda);
-		ctx.lineTo(-jarakBenda, ukuranBenda);
-		ctx.moveTo(0, 0);
-		ctx.lineTo(-jarakBenda, ukuranBenda);
-		ctx.moveTo(0, ukuranBayangan);
-		ctx.lineTo(-jarakBenda, ukuranBenda);
-		ctx.stroke();
+		dda(0, ukuranBenda, -jarakBenda, ukuranBenda, ctx)
+		dda(0, 0, -jarakBenda, ukuranBenda, ctx)
+		dda(0, ukuranBayangan, -jarakBenda, ukuranBenda, ctx)
 	}
 
 	return (
-		<div className="p-20">
-			<div>
-				<label htmlFor="ukuranBenda">Ukuran Benda</label>
-				<input
-					id="ukuranBenda"
-					name="ukuranBenda"
-					type="number"
-					onChange={onUkuranBendaChange}
-					value={ukuranBenda}
-				/>
-			</div>
-
-			<div>
-				<label htmlFor="ukuranBenda">Jarak Benda</label>
-				<input
-					id="ukuranBenda"
-					name="ukuranBenda"
-					type="number"
-					onChange={onJarakBendaChange}
-					value={jarakBenda}
-				/>
-			</div>
-
-			<div>
-				<label htmlFor="ukuranBenda">Titik Fokus Benda</label>
-				<input
-					id="ukuranBenda"
-					name="ukuranBenda"
-					type="number"
-					onChange={onTitikFokusChange}
-					value={titikFokus}
-				/>
-			</div>
-
+		<>
 			<Canvas initialDraw={initialDraw} width={canvasWidth} height={canvasHeight} />
-		</div>
+
+			<SideBarInput
+				children={
+					<div className="offcanvas-body flex-grow overflow-y-auto p-4">
+						<Input id="ukuranBenda" label="Ukuran Benda" value={ukuranBenda} onChangeValue={onUkuranBendaChange} />
+						<hr className="" />
+						<Input id="jarakBenda" label="Jarak Benda" value={jarakBenda} onChangeValue={onJarakBendaChange} min={0} max={750} />
+						<hr className="" />
+						<Input id="titikFokus" label="Titik Fokus Benda" value={titikFokus} onChangeValue={onTitikFokusChange} min={30} max={160} />
+					</div>
+				}
+			/>
+		</>
 	);
 }
