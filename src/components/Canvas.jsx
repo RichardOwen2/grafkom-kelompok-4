@@ -15,6 +15,8 @@ export default function Canvas({ initialDraw, width, height }) {
   }, [initialDraw, width, height]);
 
   return (
-    <canvas ref={canvasRef} width={width} height={height} />
+    <div className='mx-[8%] my-[5%]'>
+      <canvas ref={canvasRef} width={width} height={height} />
+    </div>
   );
 }

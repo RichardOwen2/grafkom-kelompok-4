@@ -77,9 +77,7 @@ export default function CerminCembung() {
 
 	return (
 		<>
-			<div className="p-20">
-				<Canvas initialDraw={initialDraw} width={canvasWidth} height={canvasHeight} />
-			</div>
+			<Canvas initialDraw={initialDraw} width={canvasWidth} height={canvasHeight} />
 
 			<SideBarInput
 				children={

@@ -33,7 +33,9 @@ export default function CerminCekung() {
 
 		var radius = 1000;
 		ctx.beginPath();
-		ctx.arc(-1030 - titikFokus * 5, 0, radius + titikFokus * 5, 0, 2 * Math.PI, false);
+		ctx.arc(-1030-titikFokus*5, 0, radius+titikFokus*5, 0, 2 * Math.PI, false);
+		ctx.moveTo(0, canvasHeight);
+		ctx.lineTo(0, -canvasHeight);
 		ctx.stroke();
 
 		// Benda
@@ -77,9 +79,7 @@ export default function CerminCekung() {
 
 	return (
 		<>
-			<div className="p-20">
-				<Canvas initialDraw={initialDraw} width={canvasWidth} height={canvasHeight} />
-			</div>
+			<Canvas initialDraw={initialDraw} width={canvasWidth} height={canvasHeight} />
 
 			<SideBarInput
 				children={

@@ -33,6 +33,8 @@ export default function CerminCembung() {
 		var radius = 800;
 		ctx.beginPath();
 		ctx.arc(760+titikFokus*5, 0, radius+titikFokus*5, 0, 2 * Math.PI, false);
+		ctx.moveTo(0, canvasHeight);
+		ctx.lineTo(0, -canvasHeight);
 		ctx.stroke();
 
 		// Benda
@@ -76,9 +78,7 @@ export default function CerminCembung() {
 
 	return (
 		<>
-			<div className="p-20">
-				<Canvas initialDraw={initialDraw} width={canvasWidth} height={canvasHeight} />
-			</div>
+			<Canvas initialDraw={initialDraw} width={canvasWidth} height={canvasHeight} />
 
 			<SideBarInput
 				children={
