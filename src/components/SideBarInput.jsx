@@ -2,7 +2,7 @@ export default function SideBarInput({ children }) {
   return (
     <div
       className="invisible fixed bottom-0 top-0 right-0 z-[1045] flex w-96 max-w-full translate-x-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-lg outline-none transition duration-300 ease-in-out [&[data-te-offcanvas-show]]:transform-none"
-      tabindex="-1"
+      tabIndex="-1"
       id="offcanvasRight"
       aria-labelledby="offcanvasRightLabel"
       data-te-offcanvas-init>
@@ -22,12 +22,12 @@ export default function SideBarInput({ children }) {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="h-6 w-6">
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLineJoin="round"
                 d="M6 18L18 6M6 6l12 12" />
             </svg>
           </span>
