@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import PageSizeContext from "./contexts/PageSizeContext";
 import LensaCembung from "./pages/LensaCembung";
@@ -10,6 +10,12 @@ import CerminCembung from "./pages/CerminCembung";
 import Navbar from "./components/Navbar";
 
 export default function App() {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    navigate("/lensa/cembung");
+  }, [])
+
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight
@@ -26,6 +32,8 @@ export default function App() {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  
 
   return (
     <PageSizeContext.Provider value={windowDimensions}>
